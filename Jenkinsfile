@@ -27,6 +27,11 @@ pipeline {
             p4sync(credential: 'LocalPerforce', depotPath: '//depot/projB/...')
           }
         }
+        stage('') {
+          steps {
+            cleanup true
+          }
+        }
       }
     }
     stage('Deploy') {
