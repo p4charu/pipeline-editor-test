@@ -16,8 +16,17 @@ pipeline {
       }
     }
     stage('Test') {
-      steps {
-        echo 'Testing..'
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'Testing..'
+          }
+        }
+        stage('p4') {
+          steps {
+            p4sync(credential: 'LocalPerforce', depotPath: '//depot/projB/...')
+          }
+        }
       }
     }
     stage('Deploy') {
