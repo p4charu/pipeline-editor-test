@@ -39,6 +39,7 @@ pipeline {
         stage('p4teststage') {
           steps {
             p4sync 'p4poke'
+            p4tag(rawLabelName: 'SomeLabel', rawLabelDesc: 'Some description')
           }
         }
       }
