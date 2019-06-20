@@ -30,8 +30,17 @@ pipeline {
       }
     }
     stage('Deploy') {
-      steps {
-        echo 'Deploying....'
+      parallel {
+        stage('Deploy') {
+          steps {
+            echo 'Deploying....'
+          }
+        }
+        stage('p4teststage') {
+          steps {
+            p4sync 'p4poke'
+          }
+        }
       }
     }
   }
